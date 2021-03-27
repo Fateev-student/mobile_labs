@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lab3.News.newsList
+import com.example.lab3.News.newNewsList
 
 class ListFragment : Fragment() {
     override fun onCreateView(
@@ -18,7 +18,7 @@ class ListFragment : Fragment() {
         val recyclerView:RecyclerView = fragmentView.findViewById(R.id.news_recycler_view)
 
         recyclerView.adapter = NewsAdapter(
-            newsList()
+            newNewsList()
         ) { newsId ->
             val intent = Intent(activity,SingleItemActivity::class.java)
             intent.putExtra("newsId",newsId)

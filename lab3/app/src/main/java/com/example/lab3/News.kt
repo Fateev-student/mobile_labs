@@ -1,8 +1,12 @@
 package com.example.lab3.News
 
-
+import android.text.Html
+import android.widget.TextView
 import com.example.lab3.R
 import androidx.annotation.DrawableRes
+import okhttp3.*
+import org.json.JSONObject
+import java.io.IOException
 
 
 data class News(
@@ -12,10 +16,49 @@ data class News(
     val someText: String,
     @DrawableRes
     val image: Int?
-
 )
 
+data class IpsumNews(
+        var short_sentence: String,
+        var long_sentence: String,
+        var very_long_sentence: String,
+        var date: String,
+        @DrawableRes
+        var image: Int?
+)
 
+val URL_ipsum = "https://random-data-api.com/api/lorem_ipsum/random_lorem_ipsum"
+var okHttpClient: OkHttpClient = OkHttpClient()
+
+fun newNewsList(): Array<IpsumNews> {
+    var news = emptyArray<IpsumNews>()
+    var response: String?
+    for(i in 0..9){
+        response = makeRequest(URL_ipsum)
+        news += IpsumNews((JSONObject(response).get("short_sentence")).toString(),
+                (JSONObject(response).get("long_sentence")).toString(),
+                (JSONObject(response).get("very_long_sentence")).toString(),
+                "10 августа 1987 года",
+                R.drawable.pic11
+                )
+    }
+    return news
+}
+
+fun makeRequest(URL: String): String? {
+    val request: Request = Request.Builder().url(URL).build()
+    var json: String? = ""
+    okHttpClient.newCall(request).enqueue(object: Callback {
+        override fun onFailure(call: Call?, e: IOException?) {
+        }
+
+        override fun onResponse(call: Call?, response: Response?) {
+            json = response?.body()?.string()
+
+        }
+    })
+    return json
+}
 fun newsList(): Array<News>{
     return arrayOf(
         News(

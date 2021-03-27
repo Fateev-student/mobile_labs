@@ -1,7 +1,10 @@
 package com.example.lab3
 import android.os.Bundle
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lab3.News.okHttpClient
 import okhttp3.*
+import org.json.JSONObject
 import java.io.IOException
 
 

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.lab3.News.newNewsList
 import com.example.lab3.News.newsList
 
 class SingleItemFragment : Fragment() {
@@ -17,7 +18,7 @@ class SingleItemFragment : Fragment() {
     ): View? {
         val fragmentView = inflater.inflate(R.layout.fragment_single_item, container, false)
 
-        val news = newsList()[
+        val news = newNewsList()[
                 arguments?.getInt("newsId")!!
         ]
 
@@ -26,9 +27,9 @@ class SingleItemFragment : Fragment() {
         val newsDate = fragmentView.findViewById<TextView>(R.id.list_item_date)
         val newsText = fragmentView.findViewById<TextView>(R.id.list_item_cut)
 
-        newsHeader.text = news.head
+        newsHeader.text = news.short_sentence
         newsDate.text = news.date
-        newsText.text = (news.info + "\n" + news.someText)
+        newsText.text = (news.short_sentence + "\n" + news.long_sentence)
         newsImage.setImageResource(news.image!!)
 
         return fragmentView

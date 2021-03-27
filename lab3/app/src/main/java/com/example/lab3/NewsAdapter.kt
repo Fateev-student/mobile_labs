@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lab3.News.News
+import com.example.lab3.News.IpsumNews
 
-class NewsAdapter(private val newsList: Array<News>,private val onClickCallback: (Int) -> Unit ) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
+class NewsAdapter(private val newsList: Array<IpsumNews>, private val onClickCallback: (Int) -> Unit ) : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
     class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
         val headerTextView: TextView = itemView.findViewById(R.id.list_item_header)
@@ -30,9 +30,9 @@ class NewsAdapter(private val newsList: Array<News>,private val onClickCallback:
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val newsItem = newsList[position]
 
-        holder.headerTextView.text = newsItem.head
+        holder.headerTextView.text = newsItem!!.short_sentence
         holder.dateTextView.text = newsItem.date
-        holder.cutTextView.text = newsItem.info
+        holder.cutTextView.text = newsItem!!.long_sentence
         holder.imageView.setImageResource(newsItem.image!!)
 
         holder.itemView.setOnClickListener {
