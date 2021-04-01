@@ -30,9 +30,9 @@ class NewsAdapter(private val newsList: Array<IpsumNews>, private val onClickCal
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val newsItem = newsList[position]
 
-        holder.headerTextView.text = newsItem!!.short_sentence
+        holder.headerTextView.text = newsItem!!.name
         holder.dateTextView.text = newsItem.date
-        holder.cutTextView.text = newsItem!!.long_sentence
+        holder.cutTextView.text = newsItem!!.expansion
         holder.imageView.setImageResource(newsItem.image!!)
 
         holder.itemView.setOnClickListener {

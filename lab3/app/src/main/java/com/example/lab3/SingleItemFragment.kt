@@ -27,9 +27,9 @@ class SingleItemFragment : Fragment() {
         val newsDate = fragmentView.findViewById<TextView>(R.id.list_item_date)
         val newsText = fragmentView.findViewById<TextView>(R.id.list_item_cut)
 
-        newsHeader.text = news.short_sentence
+        newsHeader.text = news.expansion
         newsDate.text = news.date
-        newsText.text = (news.short_sentence + "\n" + news.long_sentence)
+        newsText.text = (news.expansion + "\n" + news.army_type)
         newsImage.setImageResource(news.image!!)
 
         return fragmentView
